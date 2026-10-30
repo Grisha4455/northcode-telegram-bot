@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import html
 import logging
 from datetime import datetime
 from telegram import (
@@ -190,6 +191,7 @@ class OrderBot:
         return ConversationHandler.END
 
     def format_order(self, order):
+        order = {k: html.escape(str(v)) for k, v in order.items()}
         return f"""
 <b>Новая заявка — Wiradcode</b>
 
